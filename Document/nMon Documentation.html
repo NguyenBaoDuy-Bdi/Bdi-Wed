@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>nMon Documentation</title>
+        <link rel="stylesheet" href="https://stackedit.io/style.css" />
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1 id="ontrack-documentation">nMon Documentation</h1>
+            <hr>
+            <p>Thank you for purchasing nMon. If you have any questions that are beyond the scope of this help file, please feel free to email via my user page contact form <a href="http://codecanyon.net/user/codeniner">here</a>.</p>
+            <hr>
+            <p>
+                <div class="toc">
+                    <ul>
+                        <li><a href="#server-requirements">Server Requirements</a></li>
+                        <li><a href="#installation">Installation</a></li>
+                        <li><a href="#upgrading">Upgrading</a></li>
+                        <li><a href="#upgrading">Moving to another host/server</a></li>
+                        <li><a href="#cronjobs">System Cron Job</a></li>
+                        <li><a href="#configuration">Configuration</a></li>
+                        <li><a href="#key-aspects">Key Aspects</a></li>
+                        <li><a href="#translating">Translating</a></li>
+                        <li><a href="#issues">FAQ</a></li>
+                    <ul>
+                </div>
+            </p>
+            <hr>
+
+            <h2 id="server-requirements">Server Requirements</h2>
+            <p>To run nMon your hosting server must support the following:</p>
+            <blockquote>
+                PHP version 5.4 or greater (PHP 7.1 recommended for best performance)<br>
+                MySQL version 5.x or greater(MariaDB 10 recommended for best performance)<br>
+                PHP PDO MYSQL extension;<br>
+                PHP FSOCKOPEN enabled;<br>
+                PHP EXEC enabled (optional for ping checks);<br>
+                Cronjobs.
+            </blockquote>
+
+
+            <h2 id="installation">Installation</h2>
+            <p>Folow these steps to install nMon:</p>
+            <h4 id="step-1-upload-files">STEP 1. Upload Files</h4>
+            <p>Connect to your web server with your favorite FTP client (ie. Filezilla) and upload the contents of the ‘upload’ folder.</p>
+            <h4 id="step-2-create-the-database">STEP 2. Create the Database</h4>
+            <p>Create a new MySQL database using your host’s control panel.</p>
+            <h4 id="step-3-run-the-installation-script">STEP 3. Run the Installation Script</h4>
+            <p>Point a web browser to your domain plus “/install” (example <a href="http://www.my-domain.com/install">http://www.my-domain.com/install</a>).<p>
+            <p>Enter your MySQL database configuration and enter the authentication details to create your first admin account.<p>
+            <p>nMon URL will be automatically determined, adjust if needed, (note: URL must end with the trailing slash "/").<p>
+            <p>Click “Continue” to proceed to the next step. <p>
+            <p><img src="http://assets.codeniner.com/nmon/docs/installer.png" title=""></p>
+            <p>If the database connection was successful the following screen will appear. Click “Install” to complete the installation. <br>
+            <img src="http://assets.codeniner.com/nmon/docs/installer1.png" alt="installer image" title=""></p>
+            <h4 id="step-4-delete-install-directory">STEP 4. Delete ‘install’ Directory</h4>
+            <p>Using your FTP client, delete the ‘install’ folder from your web server.</p>
+            <h4 id="step-4-delete-install-directory">STEP 5. Configure System Cron Job</h4>
+            <p>Sign in to nMon, navigate to System > Settings > Cron Jobs and follow the instructions on this page on how to configure the system cron job.</p>
+
+            <br>
+            <p><strong>To access nMon point your browser to your installation domain and login with the credentials provided during installation.</strong></p>
+            <p><b>Notice:</b> The installer needs to have permission to create the "config.php" file in the root directory of the installation, if installation is unsuccessful create an empty config.php file and rerun the installer.</p>
+
+
+            <h2 id="upgrading">Upgrading</h2>
+            <p>Follow these steps to upgrade nMon</p>
+            <h4 id="step-1-download">STEP 1. Download</h4>
+            <p>Download the new version and extract with your favorite file-archiver.</p>
+            <h4 id="step-2-backup">STEP 2. Backup</h4>
+            <p>Backup all your files and your database. <br>
+            You can use a FTP client to download all the files from your web server to your local computer. <br>
+            For the database backup use the tools provided in the admin panel for your hosting account (usually PhpMyAdmin).</p>
+            <h4 id="step-3-upload">STEP 3. Upload</h4>
+            <p>Upload the contents of the ‘upload’ folder to your web server with your favorite FTP client, overwriting all the files. <br>
+            If you have made any custom modifications to nMon files, these will be overwritten.</p>
+            <h4 id="step-4-run-the-upgrade-script">STEP 4. Run the Upgrade Script</h4>
+            <p>Point a web browser to your installation plus “/install/upgrade.php” (example <a href="http://www.my-domain.com/install/upgrade.php">http://www.my-domain.com/install/upgrade.php</a>). This script will update the database to the required version.</p>
+            <h4 id="step-4-delete-install-directory-1">STEP 5. Delete ‘install’ Directory</h4>
+            <p>Using your FTP client delete the ‘install’ directory from your web server. </p>
+
+            <h2 id="moving">Moving to another host/server</h2>
+            <p>Follow these steps to move nMon to another hosting account/server</p>
+            <h4 id="step-1-transfer-files">STEP 1. Transfer files</h4>
+            <p>Using a FTP client (eg. Filezilla) download all nMon files from the old server and then upload to the new server.</p>
+            <h4 id="step-2-transfer-database">STEP 2. Transfer database</h4>
+            <p>Backup the database from the old server using the database administration tools in your server's control panel (usually PhpMyAdmin). <br>
+            Create a new database on the new server and restore the data from the backup file. <br>
+            <h4 id="step-3-update-config">STEP 3. Update config.php file</h4>
+            <p>Using your favorite text editor edit config.php (in the root directory of your installation) and update with the new database credentials. <br>
+
+            <h4 id="step-4-update-config">STEP 4. Configure System Cron Job on the new server</h4>
+            <p>Sign in to nMon, navigate to System > Settings > Cron Jobs and follow the instructions on this page on how to configure the system cron job. <br>
+
+            <h4 id="step-5-update-url">STEP 5. Update nMon URL</h4>
+            <p>If the URL has changed, sign in to nMon, navigate to System > Settings and update with your new URL.</p>
+            <p><strong>In case of URL change you have to reinstall the agent on all servers.</strong></p>
+
+
+
+            <h2 id="cronjobs">System Cronjob</h2>
+            <p><strong>For normal system operation you need to configure the following cron job using you hosting/VPS control panel.</strong></p>
+            <p>Configure one of the following (which works best for your environment). </p>
+
+            <pre><code>*/3 * * * * GET http://[replace with your url]/crons/cron.php >/dev/null 2>&1</code></pre>
+            or
+            <pre><code>*/3 * * * * php -q [replace with full path]/crons/cron.php >/dev/null 2>&1</code></pre>
+            <em>This cron job will process websites and checks, process alerts for all assets and send notifications if needed, every 3 minutes. </em></p>
+
+            <p><strong>Performance Considerations</strong></p>
+            <p>Although it is recommended to run the cron job every 3 minutes, you may choose to increase this if the cron job takes more time to complete (depending on the number of checks and server's performance).</p>
+            <p>Check in System > Logs > Cron Log the time it takes to complete each cron invocation, as a rule add 2 minutes to the last cron run time, round up and this is the number to set your cron job.</p>
+            <p>PHP's max_execution_time should be higher than the cron job run time, if you do not see any data in the cron log your cron job might be configured incorrectly or it does not have time to complete, restricted by max_execution_time.</p>
+
+
+            <h2 id="configuration">Configuration</h2>
+            <p>After installation go to System &gt; Settings to configure nMon.</p>
+
+            <p><img src="http://assets.codeniner.com/nmon/docs/settings.png" title=""></p>
+
+            <h4 id="general-settings">General</h4>
+            <p>Go to ‘General’ tab to set your company info, records to display per page, system log retention period and a few other tweaks.</p>
+
+            <h4 id="general-settings">Monitoring</h4>
+            <p>In ‘Monitoring’ tab you can adjust the default check timeout, default contact used for new checks, servers or websites. </p>
+            <p>Adjust the history retention for monitoring according to your preferences, keep in mind that the database can get large if you have a lot of servers and keep the logs for a long period. </p>
+
+            <h4 id="general-settings">Localisation</h4>
+            <p>In ‘Localisation’ you can adjust: first day of the week, default language, timezone and the date format. </p>
+            <p>Changing the time zone often is not recommended as this will not change the existing datetime information in the database, system will recover shortly after new data is received or collected, but the old data will be offset by the timezone difference. </p>
+            <p>Please refer to the ‘Translating’ section of this documentation on how to translate and add new languages. </p>
+
+            <h4 id="email-settings">Email Settings</h4>
+            <p>Go to ‘Email Settings’ tab to configure your mail server. </p>
+            <p>By default the app uses PHP mail() to send emails. </p>
+            <p>You can configure a SMTP server if required (recommended). </p>
+
+
+            <h4 id="sms-settings">SMS Gateway</h4>
+             <p>If you wish to send SMS alerts you will have to configure your SMS service provider here. <br>
+             nMon currently supports Clickatell and SMS Global.  <br>
+             You need to have an account with API access at one of this provider. <br>
+             </p>
+
+             <h4 id="sms-settings">Twitter</h4>
+              <p>If you wish to send twitter alerts (direct messages) you will have to configure your twitter API credentials here. <br>
+              Go to <a href="https://apps.twitter.com/">https://apps.twitter.com/</a> to add a new app, copy the consumer key and secret then inside the newly created app generate a new access token and copy it to nMon configuration.  <br>
+              Note: Twitter does not support sending direct messages to the same twitter account, you have to generate the API credentials from a different account from the one you intend to receive alerts. <br>
+              </p>
+
+              <h4 id="sms-settings">Pushover</h4>
+              <p>If you wish to send pushover notifications you will have to configure your Pushover Application API Token here. <br>
+              Go to <a href="https://pushover.net/apps/build">https://pushover.net/apps/build</a> to create a new Pushover Application/Plugin.  <br>
+
+              </p>
+
+            <h4 id="notification-templates">Notification Templates</h4>
+            <p>In ‘Notification Templates’ tab you can customize the email templates nMon sends to users. <br>
+            Click on any notification to edit it’s content. <br></p>
+
+            <h4 id="cron-jobs">Cron Jobs</h4>
+            <p>Please refer to 'System Cronjob' section of this documentation for more information. <br>
+
+
+
+            <h2 id="key-aspects">Key Aspects</h2>
+
+            <h4 id="tickets">SERVERS</h4>
+            <p>Server monitoring is done with the nMon Agent which can be installed on your server with just one shell command. <br>
+            To add a new server go to Servers click on Add Server fill in the name and group for your server and click Add. <br>
+            After adding a new server access the server page and you will be presented with the install command.</p>
+
+            <p>Note: A Data Loss alert is required to properly determine server's uptime (this alert is created by default while adding a new server).</p>
+
+            <p>nMon agent is a minimal bash script which will extract server metrics every minute and report back to nMon.<br>
+            nMon agent can report the following metrics: CPU usage, load averages, RAM usage, network usage, disk usage, current running processes and basic server info like hostname, operating system, kernel, etc.<br>
+            nMon agent is compatible with the following operating systems CentOS, Red Hat, Cloudlinux, Scientific Linux, Debian, Ubuntu, Fedora, SuSe, Slackware, Gentoo Linux, Arch Linux and other linux distributions/variations are supported but not tested.
+
+            </p>
+
+            <h4 id="tasks">WEBSITES</h4>
+            <p>Use websites monitors to check the status of a given website, load time and check if a string is present or not. <br>
+            Note: A HTTP Response Code != 200 alert is required to properly determine website's uptime (this alert is created by default while adding a new website monitor).<br>
+
+            </p>
+
+            <h4 id="tasks">CHECKS</h4>
+            <p>Using checks monitors you can check the status of the following service types:<br>
+                - TCP (used to monitor the status of a TCP service like FTP, HTTP, SMTP services, etc.)<br>
+                - UDP (used to monitor the status of a UDP service like DNS)<br>
+                - ICMP (Ping) (monitor if a host is alive using the basic ping command, PHP's exec function must be allowed in order for this to work)<br>
+                - DNS (monitor a DNS server for a response, you can use to monitor if the specified DNS server responds correctly for the given host)<br>
+                - IP Blacklist (monitor if an IP address is blacklisted on the most common email blacklists)</p>
+            <p>Depending on the check's type the following data is collected: status, response time, blacklisted or not.<br>
+            Note: A Check Offline alert is required to properly determine service uptime for TCP, UDP or PING checks (this alert is created by default while adding a new check).<br>
+            Note: A DNS Lookup Failed alert is required to properly determine the DNS status for DNS checks (this alert is created by default while adding a new check).<br>
+            Note: A Listed In Blacklist alert is required to properly determine the blacklist status for IP Blacklists checks (this alert is created by default while adding a new check).<br>
+            </p>
+
+
+
+
+            <h4 id="tasks">ALERTING & INCIDENTS</h4>
+            <p>nMon uses alerts to check the status of a given asset, when adding a new asset a few default alerts are created automatically.<br>
+            These alerts are highly customizable. Go to the Alerting tab of any asset to add alerts or modify existing ones.</p>
+
+            <p>Alerts are processed every time the system cron runs, if any alert is trigered a new incident will be created and the selected contacts will be notified.<br>
+            If the problem disappears, nMon will automatically close the incident and the selected contacts will be notified.</p>
+
+            <p>nMon supports the following notification channels: Email, SMS, Pushbullet, Twitter Direct Messages.<br></p>
+            - Email - make sure email server settings are properly configured in system settings<br>
+            - SMS - You can choose between the following SMS gateway providers: Clickatell, SMS Global. An account with API access and enough credit is required to use SMS notifications<br>
+            - Pushbullet - Go to pushbullet.com to create a new account and retrieve your API key in your Pushbullet profile, no further configuration is necessary.<br>
+            - Twitter - notifications are sent using direct messages, please see the Configuration section on how to configure twitter API.<br>
+            - Pushover - Go to pushover.net to create a new account and retrieve your user key, Pushover Application Token has to be configured in System > Settings for pushover notifications to work.
+            </p>
+
+            <p>Contacts can be added in Alerting > Contacts. Leave the field blank of any channel to disable alerts on that channel.<br>
+                - Email Address - example: john@example.com<br>
+                - Mobile Number - your mobile number in international format<br>
+                - Pushbullet - your Pushbullet Account access token<br>
+                - Twitter - your twitter username<br>
+                - Pushover - your Pushover user key<br>
+            </p>
+
+
+            <h4 id="tasks">PAGES</h4>
+            <p>You can add public pages which will include an overview of your assets' status.<br>
+            You can choose what assets will be included on any page and predefine a custom message and title for a page.<br>
+            </p>
+
+            <p>All pages are public (no authentication required to view), you may use the page's link to display on your website or include in a HTML iframe tag.</p>
+
+
+
+            <h2 id="translating">Translating</h2>
+            <p>nMon uses an implementation of gettext to provide multilanguage support.</p>
+            <p>Gettext uses ".po" and ".mo" files to hold the translations.<br>
+                ".po" (Portable Object) is a text file that includes the original texts and the translations, this file can be used for editing.<br>
+                ".mo" (Machine Object) files are compiled and are easy for computers to read, this file is used by nMon to provide translations.
+            </p>
+
+            <p>Follow these steps to translate nMon</p>
+            <ol>
+                <li>"template.po" file is provided in the "lang" folder</li>
+                <li>Edit this file with a PO file editor</li>
+                <li>Compile .mo file with your PO file editor, save your file in the following format languagecode.mo (example: en.po, fr.po, it.po etc.)</li>
+                <li>Copy the .mo file in the "lang/overrides" folder of your nMon installation.</li>
+                <li>Go to System > Settings > Localisation and add your new language, use the 2 letters language code for the code field.</li>
+            </ol>
+
+            <p>To edit .po files you can use <a href="http://poedit.net/">Poedit</a>, a simple to use and free application.</p>
+
+            <p><b>Notice:</b> As new features are added to nMon, new text strings might need translating, whith each new update, if new strings available, will be added to the template file. You can import them with Poedit in your language file.</p>
+            <p><b>Notice:</b> Place all translation files in the "lang/overrides" folder. Placing them directly into the "lang" folder might get overwritten.</p>
+            <p><b>Notice:</b> Language code must be the same as the filename (example: if you have the file fr.mo the code is fr).</p>
+            <p><b>Notice:</b> If the system does not find the required string in your translation file it will use the default English for that string.</p>
+            <p><b>Notice:</b> Users/Admins can set different languages, if preferred, which overrides the default language set in Settings > Localisation.</p>
+
+            <br><br><br>
+            <blockquote>
+              <p>Many thanks to Abdullah Almsaeed for the beautiful AdminLTE theme.</p>
+            </blockquote>
+            </div>
+    </body>
+</html>
